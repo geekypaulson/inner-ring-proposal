@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yellow Line Inner Ring Alignment — Namma Metro Proposal</title>
+<title>Yellow Line-Inner Ring Alignment — Namma Metro Proposal</title>
 <meta name="description" content="A citizen proposal to reroute Bengaluru's Yellow Metro Line along the Inner Ring Road corridor, preventing the BSMILE flyover from blocking metro expansion forever.">
 <meta property="og:title" content="Yellow Line – Inner Ring Road Alignment | Namma Metro Proposal">
 <meta property="og:description" content="How rerouting the Yellow Line can unlock Bengaluru's most congested corridor while saving it from flyover lock-in.">
@@ -293,9 +293,33 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 .overall-score-number { font-family: var(--font-display); font-style: italic; font-size: var(--text-3xl); color: var(--color-primary); line-height: 1; }
 .overall-score-label { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
 
+/* ─── INLINE SECTION IMAGES ─── */
+.section-image {
+  margin: var(--space-6) 0;
+}
+
+.section-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.section-image figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
 /* ─── MAP GALLERY ─── */
-.map-gallery { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin: var(--space-6) 0; }
-@media (min-width: 640px) { .map-gallery { grid-template-columns: 1fr 1fr; } }
+.map-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: var(--space-6) 0;
+}
 .map-card {
   border-radius: var(--radius-lg); overflow: hidden;
   border: 1px solid var(--color-border); box-shadow: var(--shadow-md);
@@ -415,6 +439,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     </div>
   </div>
   <p class="hero-lead">GBA through BSMILE plans a ₹1,300 crore flyover from SV Road to Silk Board via Indiranagar along the Inner Ring Road. <br> If built on flyover pillars, a metro can never come here. Here's a smarter alternative and it uses existing infrastructure.</p>
+  <figure class="section-image">
+  <img src="./assets/MAP.png" alt="Overview map of the proposed Yellow Line Inner Ring Road alignment" width="1200" height="900" loading="lazy">
+  <figcaption>Overview of the proposed Yellow Line reroute across Bengaluru.</figcaption>
+  </figure>
 </section>
 
 <!-- MAIN -->
@@ -456,6 +484,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <p>A metro station requires <strong>substantial column foundations</strong> both for elevated structures and for underground cut-and-cover sections. If flyover pillars are sunk along the Inner Ring Road alignment, there is <strong>no space remaining for metro columns or structural excavation</strong>. The corridor would be physically locked out of any future metro.</p>
         <p>Underground metro through this zone isn't viable either once flyover pillars are in the weight loading of the flyover structure above compromises underground construction feasibility and soil bearing capacity. <strong>This is a one-way door.</strong></p>
 
+        <figure class="section-image">
+        <img src="./assets/mapsmall1.png" alt="Inner-city map showing the corridor through Koramangala, Domlur and Indiranagar" width="1200" height="900" loading="lazy">
+        <figcaption>The Inner Ring corridor is one of Bengaluru’s densest and most strategically important missing metro links.</figcaption>
+        </figure>
         <div class="callout callout-info">
           <div class="callout-icon">🏘️</div>
           <div class="callout-body">
@@ -542,6 +574,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
             <p>The Yellow Line's western terminus at RV Road has no forward scope — the Green Line already serves that region. Blue Line using Yellow's Silk Board→RV Road segment gives the Blue Line a complete south-end terminus and makes Yellow Line's western leg redundant, freeing it to go elsewhere.</p>
           </div>
         </div>
+        <figure class="section-image">
+        <img src="./assets/silkboard1.png" alt="Annotated Silk Board operating logic map showing Blue and Yellow line reconfiguration" width="1200" height="900" loading="lazy">
+        <figcaption>Silk Board is the key operating node where Blue can continue on existing Yellow infrastructure while Yellow turns north.</figcaption>
+        </figure>
 
         <h3>Step 2 — Reroute Yellow Line Northward via Inner Ring Road</h3>
 
@@ -596,7 +632,10 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <h2>Route Breakdown</h2>
 
         <p>The rerouted Yellow Line creates a long, commercially dense metro corridor across Bengaluru's most congested inner arc — precisely what the IISc study envisioned.</p>
-
+        <figure class="section-image">
+        <img src="./assets/mapbig1.png" alt="City-wide annotated map of the proposed Yellow Line reroute" width="1200" height="900" loading="lazy">
+        <figcaption>City-wide view of the proposed Yellow reroute and its relationship to the wider Namma Metro network.</figcaption>
+        </figure>      
         <table class="route-table" aria-label="Proposed Yellow Line station alignment">
           <thead>
             <tr>
@@ -653,6 +692,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
             </tr>
           </tbody>
         </table>
+        <figure class="section-image">
+        <img src="./assets/kalyan1.png" alt="Northern extension option toward Kalyan Nagar and Hennur" width="1200" height="900" loading="lazy">
+        <figcaption>Northern extension option showing how the rerouted Yellow Line could continue toward Kalyan Nagar and Hennur.</figcaption>
+      </figure>
+
       </section>
 
       <!-- SECTION 5: MAPS -->
@@ -662,41 +706,27 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 
         <div class="map-gallery">
           <div class="map-card wide">
-            <div class="map-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
-                <line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
-              </svg>
-              <p>City-wide overview — embed your Mapbox screenshot here</p>
-            </div>
+            <img src="./assets/MAP.png" alt="City-wide overview of the proposed Yellow Line reroute" width="1200" height="900" loading="lazy">
             <div class="map-caption">
               <strong>City-wide Overview</strong>
               <span>Yellow Line reroute (gold) diverging northward from Silk Board through Koramangala toward Kalyan Nagar / Hennur, shown among the full Namma Metro network.</span>
             </div>
           </div>
           <div class="map-card">
-            <div class="map-placeholder" style="aspect-ratio: 4/3;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              <p>Mid-city zoom — embed map 2</p>
-            </div>
+            <img src="./assets/kalyan1.png" alt="Mid-city zoom of the proposed Yellow Line reroute" width="1200" height="900" loading="lazy">
             <div class="map-caption">
-              <strong>Mid-City: Baiyappanahalli → Domlur</strong>
+              <strong>Mid-City: Domlur → Kalyan Nagar</strong>
               <span>Yellow Line through the dense inner commercial belt, connecting to Indiranagar.</span>
             </div>
           </div>
           <div class="map-card">
-            <div class="map-placeholder" style="aspect-ratio: 4/3;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              <p>Southern zoom — embed map 3</p>
-            </div>
+            <img src="./assets/silkboard1.png" alt="Southern zoom of the proposed Yellow Line reroute" width="1200" height="900" loading="lazy">
             <div class="map-caption">
               <strong>Silk Board Interchange</strong>
               <span>Southern anchor point where Blue Line ends and the rerouted Yellow Line begins, sweeping northeast into Koramangala.</span>
             </div>
           </div>
         </div>
-
-        <p style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-2);">📎 To embed your maps: replace the placeholder divs above with <code>&lt;img src="..."&gt;</code> tags pointing to your Mapbox screenshots.</p>
       </section>
 
       <!-- SECTION 6: RATING -->
