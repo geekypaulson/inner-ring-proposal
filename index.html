@@ -140,20 +140,41 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 .hero-lead { font-size: var(--text-lg); color: var(--color-text-muted); max-width: 60ch; line-height: 1.65; }
 
 /* ─── LAYOUT ─── */
-.page-body { max-width: var(--content-default); margin-inline: auto; padding: var(--space-12) var(--space-6); }
-.toc-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-12); }
-@media (min-width: 900px) {
-  .toc-layout { grid-template-columns: 200px 1fr; align-items: start; }
-  .toc-sidebar { position: sticky; top: 5rem; }
-}
+.page-body { max-width: var(--content-default); margin-inline: auto; padding: 0 var(--space-6) var(--space-12); }
+.toc-layout { display: block; }
+.toc-sidebar { width: 100%; }
 
 /* ─── TOC ─── */
-.toc { font-size: var(--text-xs); }
-.toc-title { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-4); }
-.toc ol { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); padding: 0; }
-.toc li a { color: var(--color-text-muted); text-decoration: none; display: block; padding: var(--space-1) 0; border-left: 2px solid var(--color-divider); padding-left: var(--space-3); transition: color var(--transition), border-color var(--transition); }
-.toc li a:hover { color: var(--color-primary); border-color: var(--color-primary); }
-.toc li a.active { color: var(--color-primary); border-color: var(--color-primary); font-weight: 600; }
+.toc {
+  position: sticky; top: 3.5rem; z-index: 90;
+  background: oklch(from var(--color-bg) l c h / 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+  padding: var(--space-3) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.toc-title { display: none; }
+.toc ol {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: row; flex-wrap: nowrap;
+  gap: var(--space-2); overflow-x: auto;
+  scrollbar-width: none;
+}
+.toc ol::-webkit-scrollbar { display: none; }
+.toc li { flex-shrink: 0; }
+.toc li a {
+  color: var(--color-text-muted); text-decoration: none;
+  display: inline-flex; align-items: center;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-xs); font-weight: 500;
+  background: var(--color-surface);
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.toc li a:hover { color: var(--color-primary); border-color: var(--color-primary); background: var(--color-primary-highlight); }
+.toc li a.active { color: var(--color-primary); border-color: var(--color-primary); background: var(--color-primary-highlight); font-weight: 700; }
 
 /* ─── SECTIONS ─── */
 .section { margin-bottom: var(--space-16); }
@@ -178,12 +199,43 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 /* ─── STAT GRID ─── */
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: var(--space-4); margin: var(--space-6) 0; }
 .stat-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); padding: var(--space-5);
-  box-shadow: var(--shadow-sm);
+  background: oklch(from var(--color-danger) l c h / 0.05);
+  border: 1px solid oklch(from var(--color-danger) l c h / 0.16);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: none;
 }
 .stat-number { font-family: var(--font-display); font-size: var(--text-2xl); font-style: italic; color: var(--color-primary); line-height: 1; margin-bottom: var(--space-2); }
-.stat-label { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.risk-panel {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: 1px solid oklch(from var(--color-danger) l c h / 0.28);
+  border-left: 6px solid var(--color-danger);
+  border-radius: var(--radius-lg);
+  background: oklch(from var(--color-danger) l c h / 0.08);
+}
+
+.risk-panel-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: oklch(from var(--color-danger) l c h / 0.14);
+  color: var(--color-danger);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
 /* ─── STEP LIST ─── */
 .step-list { list-style: none; padding: 0; margin: var(--space-6) 0; display: flex; flex-direction: column; gap: var(--space-4); }
@@ -282,6 +334,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 .btn-ghost { border: 1px solid var(--color-border); color: var(--color-text); }
 .btn-ghost:hover { background: var(--color-surface-offset); }
 
+/* ─── ARTICLE LINKS ─── */
+.section a, .callout a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: oklch(from var(--color-primary) l c h / 0.3);
+  text-underline-offset: 3px;
+}
+.section a:hover, .callout a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
 /* ─── FOOTER ─── */
 .site-footer { border-top: 1px solid var(--color-divider); padding: var(--space-8) var(--space-6); text-align: center; }
 .site-footer p { font-size: var(--text-xs); color: var(--color-text-faint); }
@@ -289,7 +352,8 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 /* ─── MOBILE ─── */
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
-  .page-body { padding: var(--space-8) var(--space-4); }
+  .page-body { padding: 0 var(--space-4) var(--space-8); }
+  .toc { padding: var(--space-3) var(--space-4); }
   .hero { padding: var(--space-12) var(--space-4) var(--space-8); }
   .site-header { padding: var(--space-3) var(--space-4); }
   .share-btn span { display: none; }
@@ -306,7 +370,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 <!-- HEADER -->
 <header class="site-header">
   <a href="#" class="header-logo" aria-label="Yellow Line Proposal Home">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <img src="./assets/logo.png" width="32" height="32" alt="Logo" style="border-radius: 6px;">
       <rect width="32" height="32" rx="8" fill="#f5b731"/>
       <path d="M8 24 L16 8 L24 24" stroke="#1a1400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       <circle cx="16" cy="8" r="2.5" fill="#1a1400"/>
@@ -350,29 +414,26 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
       <span class="value">Inner Ring Metro Study</span>
     </div>
   </div>
-  <p class="hero-lead">BSMILE plans a ₹1,300 crore flyover from SV Road to Silk Board via Indiranagar. If built on flyover pillars, a metro can never come here. Here's a smarter alternative — and it uses existing infrastructure.</p>
+  <p class="hero-lead">GBA through BSMILE plans a ₹1,300 crore flyover from SV Road to Silk Board via Indiranagar along the Inner Ring Road. <br> If built on flyover pillars, a metro can never come here. Here's a smarter alternative and it uses existing infrastructure.</p>
 </section>
 
 <!-- MAIN -->
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc-title">Contents</p>
+  <ol>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#evidence">IISc Evidence</a></li>
+    <li><a href="#proposal">The Proposal</a></li>
+    <li><a href="#route">Route Breakdown</a></li>
+    <li><a href="#maps">Maps</a></li>
+    <li><a href="#rating">Rating</a></li>
+    <li><a href="#counterargs">Counter-Arguments</a></li>
+    <li><a href="#act">Take Action</a></li>
+  </ol>
+</nav>
+
 <main id="main-content" class="page-body">
   <div class="toc-layout">
-
-    <!-- SIDEBAR TOC -->
-    <aside class="toc-sidebar" aria-label="Table of contents">
-      <nav class="toc">
-        <p class="toc-title">Contents</p>
-        <ol>
-          <li><a href="#problem">The Problem</a></li>
-          <li><a href="#evidence">IISc Evidence</a></li>
-          <li><a href="#proposal">The Proposal</a></li>
-          <li><a href="#route">Route Breakdown</a></li>
-          <li><a href="#maps">Maps</a></li>
-          <li><a href="#rating">Rating</a></li>
-          <li><a href="#counterargs">Counter-Arguments</a></li>
-          <li><a href="#act">Take Action</a></li>
-        </ol>
-      </nav>
-    </aside>
 
     <!-- CONTENT -->
     <div class="content">
@@ -384,17 +445,27 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <div class="callout callout-danger">
           <div class="callout-icon">⚠️</div>
           <div class="callout-body">
-            <strong>BSMILE Flyover Plan — SV Road to Silk Board</strong>
-            <p>Bengaluru Smart Infrastructure Ltd (BSMILE) has floated tenders for an 11.6-km elevated corridor connecting SV Road Metro to Silk Board via Koramangala and Indiranagar at a cost of ₹1,300 crore. DPR is underway as part of a broader plan for 13 elevated corridors totalling 126 km city-wide.</p>
+            <strong>BSMILE Flyover Plan - SV Road to Silk Board</strong>
+            <p>BSMILE has proposed an <strong style="display: inline !important;">11.62-km elevated corridor</strong> from SV Road Metro to Silk Board via Indiranagar's <strong style="display: inline !important;">80 Feet Road, CMH Road and 100 Feet Road</strong>, at an estimated cost of <strong style="display: inline !important;">₹1,300 crore</strong>. It is one of 11 new flyovers approved by the Karnataka government in April 2025. [<a href="https://www.deccanherald.com/india/karnataka/bengaluru/11-6-km-flyover-b-luru-gets-yet-another-decongestion-plan-4032083" target="_blank" rel="noopener noreferrer">Deccan Herald</a>]</p>
+            <p>This corridor through Indiranagar, Domlur and Koramangala is among Bengaluru's most congested. A flyover may offer short-term relief, but it risks permanently blocking a future metro on the same alignment. The concern is sharpened by Bengaluru's own record: the nearby 2.4-km Ejipura flyover has remained incomplete for nearly a decade. [<a href="https://www.deccanherald.com/india/karnataka/bengaluru/11-6-km-flyover-b-luru-gets-yet-another-decongestion-plan-4032083" target="_blank" rel="noopener noreferrer">Deccan Herald</a>] [<a href="https://indianexpress.com/article/cities/bangalore/land-acquisition-pending-bills-bengaluru-stonehenge-ejipura-flyover-10079516/" target="_blank" rel="noopener noreferrer">Indian Express</a>]</p>
           </div>
         </div>
 
-        <p>The Inner Ring Road corridor through Indiranagar, Domlur, and Koramangala is one of the most congested stretches in Bengaluru. It connects major employment hubs, residential areas, and transit nodes. A flyover here might offer short-term relief — but it comes at a permanent and irreversible cost.</p>
-
+        
         <h3>Why a Flyover Blocks Metro Forever</h3>
-        <p>A metro station requires <strong>substantial column foundations</strong> — both for elevated structures and for underground cut-and-cover sections. If flyover pillars are sunk along the Inner Ring Road alignment, there is <strong>no space remaining for metro columns or structural excavation</strong>. The corridor would be physically locked out of any future metro.</p>
-        <p>Underground metro through this zone isn't viable either once flyover pillars are in — the weight loading of the flyover structure above compromises underground construction feasibility and soil bearing capacity. <strong>This is a one-way door.</strong></p>
+        <p>A metro station requires <strong>substantial column foundations</strong> both for elevated structures and for underground cut-and-cover sections. If flyover pillars are sunk along the Inner Ring Road alignment, there is <strong>no space remaining for metro columns or structural excavation</strong>. The corridor would be physically locked out of any future metro.</p>
+        <p>Underground metro through this zone isn't viable either once flyover pillars are in the weight loading of the flyover structure above compromises underground construction feasibility and soil bearing capacity. <strong>This is a one-way door.</strong></p>
 
+        <div class="callout callout-info">
+          <div class="callout-icon">🏘️</div>
+          <div class="callout-body">
+            <strong>Residents are already pushing back</strong>
+            <p>Citizens group <strong style="display: inline !important;">I Change Indiranagar</strong> has called for a public consultation before any work begins. Residents have <strong style="display: inline !important;">pooled money to hire an independent consultant</strong> to examine the alignment. Locals point out that 80 Feet Road and CMH Road are already narrow — construction would cause months of dust, noise, and disruption with no guarantee of meeting the 24-month deadline. [<a href="https://thefederal.com/category/states/south/karnataka/bengaluru-indiranagar-elevated-corridor-karnataka-bsmile-residents-protest-dk-shivakumar-246434" target="_blank" rel="noopener noreferrer">The Federal</a>] [<a href="https://www.deccanherald.com/india/karnataka/bengaluru/11-6-km-flyover-b-luru-gets-yet-another-decongestion-plan-4032083" target="_blank" rel="noopener noreferrer">Deccan Herald</a>]</p>
+          </div>
+        </div>
+
+
+      
         <div class="stat-grid">
           <div class="stat-card">
             <div class="stat-number">₹1,300Cr</div>
@@ -413,13 +484,14 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
             <div class="stat-label">Flyover corridors city-wide</div>
           </div>
         </div>
+        </div>
       </section>
 
       <!-- SECTION 2: IISC EVIDENCE -->
       <section class="section" id="evidence">
         <h2>IISc Evidence</h2>
 
-        <p>This isn't speculation — it's backed by one of India's top research institutions. IISc's Department of Civil Engineering submitted a detailed study recommending a metro along the Inner Ring Road corridor as the most effective congestion solution for central Bengaluru.</p>
+        <p>This isn't speculation, it's backed by one of India's top research institutions. IISc's Department of Civil Engineering submitted a detailed study recommending a metro along the Inner Ring Road corridor as the most effective congestion solution for central Bengaluru.</p>
 
         <div class="stat-grid">
           <div class="stat-card">
@@ -655,13 +727,13 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         <p><strong>Response:</strong> Phase 3A (Red Line: Sarjapur–Hebbal) is already planned underground through Koramangala — the same zone. If underground construction were cost-prohibitive here, BMRCL would not have approved Phase 3A. The IRM study estimated ₹10,000 crore for 34 km — comparable per-km cost to other underground metro projects in India.</p>
 
         <h3>"Flyovers actually reduce congestion"</h3>
-        <p><strong>Response:</strong> Induced demand is well-documented in urban transport literature. Elevated corridors increase road capacity temporarily, attracting more vehicles, restoring (and often worsening) congestion within years. The IISc study showed the Inner Ring Metro would reduce road traffic by 22% — a flyover in the same corridor has no equivalent long-term evidence base.</p>
+        <p><strong>Response:</strong> Induced demand is well-documented in urban transport literature. Elevated corridors increase road capacity temporarily, attracting more vehicles, restoring (and often worsening) congestion within years. The IISc study showed the Inner Ring Metro would reduce road traffic by 22% — a flyover in the same corridor has no equivalent long-term evidence base. And Bengaluru's own track record speaks loudly: the 2.4-km Ejipura flyover has been under construction for nearly a decade and is still incomplete. B-SMILE's DPR promises to build something <strong>five times longer in 24 months</strong>. [<a href="https://www.deccanherald.com/india/karnataka/bengaluru/11-6-km-flyover-b-luru-gets-yet-another-decongestion-plan-4032083" target="_blank" rel="noopener noreferrer">Deccan Herald</a>]</p>
 
         <div class="callout callout-info">
           <div class="callout-icon">🌳</div>
           <div class="callout-body">
             <strong>Tree cover — an additional angle</strong>
-            <p>Indiranagar is a tree-lined, heritage neighbourhood. The BSMILE flyover DPR already faces public pushback over tree cover loss. The metro proposal — if underground — preserves every tree. This is a powerful public sentiment argument for the Twitter thread.</p>
+            <p>The Deccan Herald describes Indiranagar as <em>"the tony Bengaluru neighbourhood known for its glitzy cafes and tree-lined avenues."</em> The flyover alignment runs directly along these tree-lined stretches. The metro proposal — if underground — preserves every tree on every street. This is arguably the strongest public sentiment argument. [<a href="https://www.deccanherald.com/india/karnataka/bengaluru/11-6-km-flyover-b-luru-gets-yet-another-decongestion-plan-4032083" target="_blank" rel="noopener noreferrer">Deccan Herald</a>]</p>
           </div>
         </div>
       </section>
@@ -742,8 +814,8 @@ const obs = new IntersectionObserver((entries) => {
 bars.forEach(b => obs.observe(b));
 
 // Active TOC
-const sections = document.querySelectorAll('section[id]');
-const tocLinks = document.querySelectorAll('.toc a');
+const sections = document.querySelectorAll('section[id], div[id="act"]');
+const tocLinks = document.querySelectorAll('nav.toc a');
 const tocObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
