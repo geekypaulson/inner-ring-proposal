@@ -8,6 +8,16 @@
 <meta property="og:title" content="Yellow Line – Inner Ring Road Alignment | Namma Metro Proposal">
 <meta property="og:description" content="How rerouting the Yellow Line can unlock Bengaluru's most congested corridor while saving it from flyover lock-in.">
 
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geekypaulson.github.io/inner-ring-proposal/">
+<meta property="og:image" content="https://geekypaulson.github.io/inner-ring-proposal/assets/MAP.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yellow Line – Inner Ring Road Alignment | Namma Metro Proposal">
+<meta name="twitter:description" content="A citizen proposal to reroute Bengaluru's Yellow Metro Line along the Inner Ring Road corridor.">
+<meta name="twitter:image" content="https://geekypaulson.github.io/inner-ring-proposal/assets/MAP.png">
+<meta name="twitter:url" content="https://geekypaulson.github.io/inner-ring-proposal/">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300..600&display=swap" rel="stylesheet">
@@ -271,19 +281,6 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 .interchange-dot { display: inline-flex; align-items: center; gap: var(--space-2); }
 .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
 
-/* ─── RATING ─── */
-.rating-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: var(--space-4); margin: var(--space-6) 0; }
-.rating-card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); padding: var(--space-5); box-shadow: var(--shadow-sm);
-}
-.rating-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3); }
-.rating-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text); }
-.rating-score { font-family: var(--font-display); font-style: italic; font-size: var(--text-lg); color: var(--color-primary); }
-.rating-bar-bg { height: 4px; background: var(--color-divider); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-3); }
-.rating-bar { height: 100%; border-radius: var(--radius-full); background: var(--color-primary); transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
-.rating-note { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
-
 /* ─── OVERALL SCORE ─── */
 .overall-score-card {
   background: var(--color-surface); border: 1px solid var(--color-border);
@@ -454,7 +451,6 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
     <li><a href="#proposal">The Proposal</a></li>
     <li><a href="#route">Route Breakdown</a></li>
     <li><a href="#maps">Maps</a></li>
-    <li><a href="#rating">Rating</a></li>
     <li><a href="#counterargs">Counter-Arguments</a></li>
     <li><a href="#act">Take Action</a></li>
   </ol>
@@ -722,20 +718,6 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
         </div>
       </section>
 
-      <!-- SECTION 6: RATING -->
-      <section class="section" id="rating">
-        <h2>Proposal Rating</h2>
-
-        <div class="overall-score-card">
-          <div class="overall-score-number">8.2 / 10</div>
-          <div class="overall-score-label">Overall Assessment — Strong citizen proposal with institutional backing</div>
-        </div>
-
-        <div class="rating-grid" id="ratings-container">
-          <!-- JS rendered -->
-        </div>
-      </section>
-
       <!-- SECTION 7: COUNTER-ARGUMENTS -->
       <section class="section" id="counterargs">
         <h2>Anticipating Counter-Arguments</h2>
@@ -779,7 +761,7 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
 </main>
 
 <footer class="site-footer">
-  <p> Citizen proposal · Not affiliated with BMRCL, BSMILE, the Government of Karnataka, or any government body · Data compiled from BMRCL, BSMILE, IISc Civil Engineering Department, and public records · June 2026</p></footer>
+  <p> Citizen proposal · Not affiliated with BMRCL, BSMILE, the Government of Karnataka, or any government body · Data compiled from BMRCL, BSMILE, IISc Civil Engineering Department, and public records · July 2026</p></footer>
 
 <style>.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border-width:0; }</style>
 
@@ -800,31 +782,6 @@ button { cursor: pointer; background: none; border: none; font: inherit; color: 
   updateIcon(d);
   if (t) t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); updateIcon(d); });
 })();
-
-// Rating cards
-const ratings = [
-  { label: 'Demand Coverage', score: 9.0, note: 'Koramangala, Indiranagar, Domlur — highest-density commercial zones in the city' },
-  { label: 'Network Logic', score: 8.5, note: 'Blue-on-Yellow infra reuse at Silk Board is elegant; removes Green Line redundancy' },
-  { label: 'Interchange Connectivity', score: 8.0, note: 'Connects Red, Blue, Pink, and Green Lines — strong multi-line integration' },
-  { label: 'IISc Alignment', score: 9.0, note: 'Closely mirrors the 34-km Inner Ring Metro recommendation' },
-  { label: 'Technical Feasibility', score: 7.0, note: 'Underground viable (Phase 3A confirms it); geotechnical study needed for Domlur lowlands' },
-  { label: 'Political Feasibility', score: 6.0, note: 'Requires BMRCL to accept Blue on Yellow infra — an operational precedent yet to be set' },
-  { label: 'Terminus Logic', score: 7.0, note: 'Kalyan Nagar is reasonable; northern depot site still unidentified' },
-];
-
-const container = document.getElementById('ratings-container');
-ratings.forEach(r => {
-  const pct = (r.score / 10 * 100).toFixed(0);
-  container.innerHTML += `
-    <div class="rating-card">
-      <div class="rating-header">
-        <span class="rating-label">${r.label}</span>
-        <span class="rating-score">${r.score}</span>
-      </div>
-      <div class="rating-bar-bg"><div class="rating-bar" style="width:0%" data-width="${pct}%"></div></div>
-      <p class="rating-note">${r.note}</p>
-    </div>`;
-});
 
 // Animate bars on scroll
 const bars = document.querySelectorAll('.rating-bar');
